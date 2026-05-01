@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: spring-webdav-sample
+  webdav:
+    prefix: /dav
+    filesystem:
+      root: ${user.home}/webdav-root
+
+server:
+  port: 8080
+
+logging:
+  level:
+    io.github.larsw.webdav: DEBUG
+

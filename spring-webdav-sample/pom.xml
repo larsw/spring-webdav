@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.github.larsw.webdav</groupId>
+        <artifactId>spring-webdav</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>spring-webdav-sample</artifactId>
+    <name>spring-webdav-sample</name>
+    <description>Sample Spring Boot application — filesystem-backed WebDAV server using spring-webdav-starter</description>
+
+    <dependencies>
+        <!-- The one-stop starter: pulls in autoconfigure + spring-boot-starter-webmvc -->
+        <dependency>
+            <groupId>io.github.larsw.webdav</groupId>
+            <artifactId>spring-webdav-starter</artifactId>
+        </dependency>
+
+        <!-- Local NIO filesystem store provider -->
+        <dependency>
+            <groupId>io.github.larsw.webdav</groupId>
+            <artifactId>spring-webdav-filesystem</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
