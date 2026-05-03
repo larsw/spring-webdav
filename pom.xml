@@ -57,6 +57,20 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Security overrides: patch vulnerabilities not yet covered by the Spring Boot BOM -->
+            <dependency>
+                <!-- CVE: CLIENT_CERT auth bypass; fix >= 10.1.54 -->
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>10.1.54</version>
+            </dependency>
+            <dependency>
+                <!-- CVE: insecure auth fallback in pgjdbc; fix >= 42.7.7 -->
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.7.11</version>
+            </dependency>
+
             <dependency>
                 <groupId>io.github.larsw.webdav</groupId>
                 <artifactId>spring-webdav-core</artifactId>
