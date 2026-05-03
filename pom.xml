@@ -11,7 +11,7 @@
 
     <groupId>io.github.larsw.webdav</groupId>
     <artifactId>spring-webdav</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>spring-webdav</name>
     <description>Spring WebDAV Framework - RFC 4918 compliant WebDAV server built on Spring WebMVC</description>
