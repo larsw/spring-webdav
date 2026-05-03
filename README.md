@@ -26,7 +26,7 @@ RFC 4918 compliant WebDAV server framework built on Spring WebMVC.
 <dependency>
     <groupId>io.github.larsw.webdav</groupId>
     <artifactId>spring-webdav-starter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -42,7 +42,7 @@ Add the filesystem module and set the root directory:
 <dependency>
     <groupId>io.github.larsw.webdav</groupId>
     <artifactId>spring-webdav-filesystem</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -62,7 +62,7 @@ Add the S3 module and configure your bucket:
 <dependency>
     <groupId>io.github.larsw.webdav</groupId>
     <artifactId>spring-webdav-s3</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -85,7 +85,7 @@ Add the PostgreSQL module and map one or more database tables to virtual directo
 <dependency>
     <groupId>io.github.larsw.webdav</groupId>
     <artifactId>spring-webdav-postgresql</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
