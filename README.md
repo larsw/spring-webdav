@@ -18,17 +18,48 @@ RFC 4918 compliant WebDAV server framework built on Spring WebMVC.
 | Java | 21+ |
 | Spring Boot | 4.0+ |
 
+## Installation
+
+Artifacts are available via [JitPack](https://jitpack.io/#larsw/spring-webdav), which requires no authentication and works with any build tool.
+
+### Maven
+
+Add the JitPack repository and the starter dependency:
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependency>
+    <groupId>io.github.larsw.webdav</groupId>
+    <artifactId>spring-webdav-starter</artifactId>
+    <version>v1.0.1</version>
+</dependency>
+```
+
+### Gradle
+
+```kotlin
+repositories {
+    maven { url = uri("https://jitpack.io") }
+}
+
+dependencies {
+    implementation("io.github.larsw.webdav:spring-webdav-starter:v1.0.1")
+}
+```
+
+Use any published git tag as the version (e.g. `v1.0.1`). A full list is available on the [releases page](https://github.com/larsw/spring-webdav/releases).
+
 ## Quick Start
 
 ### 1. Add the starter
 
-```xml
-<dependency>
-    <groupId>io.github.larsw.webdav</groupId>
-    <artifactId>spring-webdav-starter</artifactId>
-    <version>1.0.0</version>
-</dependency>
-```
+See [Installation](#installation) above for Maven and Gradle coordinates.
 
 The starter pulls in `spring-webdav-autoconfigure` and `spring-boot-starter-webmvc`.
 
