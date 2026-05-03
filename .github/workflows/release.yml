@@ -1,0 +1,97 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. 1.2.3)'
+        required: true
+      next_version:
+        description: 'Next development version (e.g. 1.2.4-SNAPSHOT). Leave blank to auto-increment patch.'
+        required: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+          server-id: github
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+
+      - name: Validate version format
+        run: |
+          if ! echo "${{ inputs.version }}" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "ERROR: version must be in MAJOR.MINOR.PATCH format (got: ${{ inputs.version }})"
+            exit 1
+          fi
+
+      - name: Resolve next development version
+        id: next
+        run: |
+          if [ -n "${{ inputs.next_version }}" ]; then
+            NEXT="${{ inputs.next_version }}"
+          else
+            IFS='.' read -r MAJOR MINOR PATCH <<< "${{ inputs.version }}"
+            NEXT="${MAJOR}.${MINOR}.$((PATCH + 1))-SNAPSHOT"
+          fi
+          echo "NEXT=$NEXT" >> "$GITHUB_OUTPUT"
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Set release version
+        run: |
+          ./mvnw --no-transfer-progress versions:set \
+            -DnewVersion=${{ inputs.version }} \
+            -DgenerateBackupPoms=false
+
+      - name: Commit and tag release
+        run: |
+          git add -A
+          git commit -m "release: ${{ inputs.version }}"
+          git tag "v${{ inputs.version }}"
+
+      - name: Build and deploy to GitHub Packages
+        run: ./mvnw --no-transfer-progress deploy -DskipTests
+        env:
+          MAVEN_USERNAME: ${{ github.actor }}
+          MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push release commit and tag
+        run: |
+          git push origin HEAD:main
+          git push origin "v${{ inputs.version }}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ inputs.version }}
+          name: v${{ inputs.version }}
+          generate_release_notes: true
+
+      - name: Bump to next development version
+        run: |
+          ./mvnw --no-transfer-progress versions:set \
+            -DnewVersion=${{ steps.next.outputs.NEXT }} \
+            -DgenerateBackupPoms=false
+          git add -A
+          git commit -m "chore: bump version to ${{ steps.next.outputs.NEXT }} [skip ci]"
+          git push origin HEAD:main

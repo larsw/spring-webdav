@@ -14,7 +14,15 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>spring-webdav</name>
-    <description>Spring WebDAV Framework — RFC 4918 compliant WebDAV server built on Spring WebMVC</description>
+    <description>Spring WebDAV Framework - RFC 4918 compliant WebDAV server built on Spring WebMVC</description>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/larsw/spring-webdav</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <java.version>21</java.version>
