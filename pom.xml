@@ -16,6 +16,22 @@
     <name>spring-webdav</name>
     <description>Spring WebDAV Framework - RFC 4918 compliant WebDAV server built on Spring WebMVC</description>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Lars Wilhelmsen</name>
+            <email>lars@lars-backwards.org</email>
+            <url>https://github.com/larsw</url>
+        </developer>
+    </developers>
+
     <distributionManagement>
         <repository>
             <id>github</id>
