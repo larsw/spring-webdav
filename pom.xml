@@ -59,10 +59,10 @@
         <dependencies>
             <!-- Security overrides: patch vulnerabilities not yet covered by the Spring Boot BOM -->
             <dependency>
-                <!-- CVE: CLIENT_CERT auth bypass; fix >= 10.1.54 -->
+                <!-- CVE: CLIENT_CERT auth bypass; fix >= 10.1.55 -->
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
-                <version>10.1.54</version>
+                <version>10.1.55</version>
             </dependency>
             <dependency>
                 <!-- CVE: insecure auth fallback in pgjdbc; fix >= 42.7.7 -->
